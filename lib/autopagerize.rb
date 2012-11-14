@@ -48,6 +48,7 @@ class Autopagerize
 
   def process
     @processed ||= begin
+      return true unless site
       result = document.dup
 
       # Insert rule:
@@ -79,12 +80,12 @@ class Autopagerize
 
   def processed_document
     process
-    @processed_document
+    @processed_document || document
   end
 
   def processed_page_elements
     process
-    @processed_page_elements
+    @processed_page_elements || []
   end
 
   def processed_html
@@ -110,6 +111,7 @@ class Autopagerize
   end
 
   def page
+    return nil unless site
     document.xpath(site["data"]["pageElement"]).last
   end
   alias :page_element :page
