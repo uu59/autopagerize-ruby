@@ -1,4 +1,4 @@
-#require "autopagerize/version"
+require "autopagerize/version"
 require "addressable/uri"
 require "nokogiri"
 require "httpclient"
