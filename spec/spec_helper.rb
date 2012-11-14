@@ -1,8 +1,15 @@
 # -- coding: utf-8
 
 require "rubygems"
+
+if ENV["COVERAGE"]
+  require "simplecov"
+  SimpleCov.start
+end
+
 require "bundler/setup"
 Bundler.require :default, :test, :development
+
 require "rspec-expectations"
 require "rspec/matchers/built_in/be"
 
