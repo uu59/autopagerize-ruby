@@ -46,8 +46,8 @@ class Autopagerize
     end
   end
 
-  def processed_document
-    @processed_document ||= begin
+  def process
+    @processed ||= begin
       result = document.dup
 
       # Insert rule:
@@ -68,12 +68,22 @@ class Autopagerize
         @processed_page_elements << current.page
       end
       point.remove
-      result
+      @processed_document = result
+      true
     end
   end
 
+  def processed?
+    @processed
+  end
+
+  def processed_document
+    process
+    @processed_document
+  end
+
   def processed_page_elements
-    processed_document
+    process
     @processed_page_elements
   end
 
